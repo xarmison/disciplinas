@@ -24,9 +24,6 @@ def fetch_data(data_url=DATA_URL, data_path=DATA_PATH, file_to_download=FILE_TO_
   
 fetch_data()
 
-# observando se o diretório datasets foi criado com sucesso 
-#!ls dados
-
 import pandas as pd
 
 def load_data(data_path=DATA_PATH, file_to_download=FILE_TO_DOWNLOAD):
