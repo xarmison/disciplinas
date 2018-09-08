@@ -36,11 +36,12 @@ def printData(data):
     plt.xlabel('Petal length (cm)')
     plt.ylabel('Sepal length (cm)')
     plt.legend(loc='upper left')
+    plt.tight_layout()
     plt.show()
 
 if __name__ == "__main__":
     # Importa o iris dataset
-    dataset = pd.read_csv('/media/hd/repos/disciplinas/tai/data/iris_data.csv', header=None)
+    dataset = pd.read_csv('../data/iris_data.csv', header=None)
 
     # Extrai os 100 primeiras rotulos 
     labels = dataset.iloc[0:100, 4].values
@@ -64,9 +65,10 @@ if __name__ == "__main__":
     ])
 
     test_label = np.array([0, 0, 1, 1])
-
+    
+    print("Perceptron preditions:   ")
     for i, item in enumerate(test_inputs):
-        print("Prediction for {} is {}, expected were {}".format(
+        print("Prediction for {} is {}, expected {}".format(
                 item, perceptron.predict(item), test_label[i] 
             )
         )
