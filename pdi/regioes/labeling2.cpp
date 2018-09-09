@@ -16,8 +16,12 @@ struct label {
 };
 
 int main(int argc, char** argv) {
-    Mat img;
-    img = imread(argv[1], CV_LOAD_IMAGE_COLOR);
+    if(argc < 2) {
+        cout << "Argumentos faltando!\nUso: ./regions <caminho_para_imagem>\n";
+        return -1;
+    }
+    
+    Mat img = imread(argv[1], CV_LOAD_IMAGE_COLOR);
     if(!img.data){
         cout << "Error ao abir " << argv[1] << endl;
         return -1;

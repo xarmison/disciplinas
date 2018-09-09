@@ -119,6 +119,11 @@ int countHoles(Mat &img) {
 }
 
 int main(int argc, char** argv) {
+    if(argc < 2) {
+        cout << "Argumentos faltando!\nUso: ./regions <caminho_para_imagem>\n";
+        return -1;
+    }
+    
     Mat img, aux;
     img = imread(argv[1], CV_LOAD_IMAGE_COLOR);
     if(!img.data){
