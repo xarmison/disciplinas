@@ -522,6 +522,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_4_2_exercícios">4.2 Exercícios</a></li>
 </ul>
 </li>
+<li><a href="#_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</a>
+<ul class="sectlevel2">
+<li><a href="#_5_2_exercícios">5.2 Exercícios</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1067,10 +1072,64 @@ $ ./motiondetector
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Programa de <a href="https://agostinhobritojr.github.io/tutorial/pdi/#_filtragem_no_dom%C3%ADnio_espacial_i">exemplo</a></p>
+</div>
+<div class="sect2">
+<h3 id="_5_2_exercícios">5.2 Exercícios</h3>
+<div class="paragraph">
+<p><strong>Exercício 1</strong></p>
+</div>
+<div class="paragraph">
+<p>O exercício propõe a adição de mais uma funcionalidade ao exemplo acima citato. Funcionalidade essa que consiste na aplicação do
+filtro lapaciano após a aplicação do filtro gaussiano.</p>
+</div>
+<div class="paragraph">
+<p>O resultado foi alcançado adicionando-se uma <em>flag</em> ao exemplo que define se uma filtragem a mais deve ser adicionada para cada frame
+processado aplicando assim um novo filtro a cada frame.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-kt">bool</span> <span class="tok-n">lapl</span> <span class="tok-o">=</span> <span class="tok-nb">false</span><span class="tok-p">;</span>
+
+<span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">lapl</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+    <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">,</span> <span class="tok-n">laplacian</span><span class="tok-p">);</span>
+    <span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa <a href="../filtragem_espacial/filtroespacial.cpp">filtroespacial.cpp</a>, salve-o juntamente com o arquivo
+<a href="../Makefile">Makefile</a> em um diretório e execute a seguinte sequência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ make filtroespacial
+$ ./filtroespacial</code></pre>
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="../imgs/filtragem_espacial_original.png" alt="Entrada do programa">
+</div>
+<div class="title">Figure 9. Entrada do programa</div>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="../imgs/filtragem_espacial_result.png" alt="Saída do programa">
+</div>
+<div class="title">Figure 10. Saída do programa</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-09 17:35:55 -03
+Last updated 2018-09-11 21:56:44 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
