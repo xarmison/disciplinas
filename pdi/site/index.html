@@ -527,6 +527,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_5_2_exercícios">5.2 Exercícios</a></li>
 </ul>
 </li>
+<li><a href="#_6_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</a>
+<ul class="sectlevel2">
+<li><a href="#_6_1_exercícios">6.1 Exercícios</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1085,7 +1090,7 @@ $ ./motiondetector
 </div>
 <div class="paragraph">
 <p>O exercício propõe a adição de mais uma funcionalidade ao exemplo acima citato. Funcionalidade essa que consiste na aplicação do
-filtro lapaciano após a aplicação do filtro gaussiano.</p>
+filtro laplaciano após a aplicação do filtro gaussiano.</p>
 </div>
 <div class="paragraph">
 <p>O resultado foi alcançado adicionando-se uma <em>flag</em> ao exemplo que define se uma filtragem a mais deve ser adicionada para cada frame
@@ -1126,10 +1131,58 @@ $ ./filtroespacial</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_6_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Programa de <a href="https://agostinhobritojr.github.io/tutorial/pdi/#_filtragem_no_dom%C3%ADnio_espacial_ii">exemplo</a></p>
+</div>
+<div class="sect2">
+<h3 id="_6_1_exercícios">6.1 Exercícios</h3>
+<div class="paragraph">
+<p><strong>Exercício 1</strong></p>
+</div>
+<div class="paragraph">
+<p>A ativadade propões a criação de uma interface que proporcione ao usuário aplicar o efeito Tilf shift em imgaens,
+para tal criada duas imagens a partir da imagem de entrada, uma usada apenas para a multiplicação ponderada e
+outra usada para armazenar o borramento da imagem de entrada. Ao final é feita a a multiplicação ponderada dos
+pixels seguindo o controle de desfoque feito manualmente a partir de sliders presentes na interface.</p>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa <a href="../filtragem_espacial/tiltshift.cpp">tiltshift.cpp</a>, salve-o juntamente com o arquivo
+<a href="../Makefile">Makefile</a> em um diretório e execute a seguinte sequência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ make tiltshift
+$ ./tiltshift &lt;caminho_para_imagem&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../imgs/tilt_shift_interface.png" alt="Interface" width="500" height="500">
+</div>
+<div class="title">Figure 11. Interface</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="../imgs/crossing.png" alt="Entrada do programa" width="500" height="500">
+</div>
+<div class="title">Figure 12. Entrada do programa</div>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="../imgs/tilt_shift_result.png" alt="Saída do programa" width="500" height="500">
+</div>
+<div class="title">Figure 13. Saída do programa</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-11 21:56:44 -03
+Last updated 2018-09-22 19:01:11 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
