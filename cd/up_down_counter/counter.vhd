@@ -37,7 +37,7 @@ architecture ckt of counter is
         
     signal mux_out, sumIn, sumOut : std_logic_vector(2 downto 0);
     signal num : std_logic_vector(6 downto 0);
-	 signal regClk : std_logic;
+	signal regClk : std_logic;
 
 begin
 	 
