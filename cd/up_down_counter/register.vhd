@@ -20,9 +20,9 @@ architecture ckt of reg3 is
 
 begin
 
-    Q0 : ffd port map(inputs(0), not(rst), 0, clk, outputs(0));
-    Q1 : ffd port map(inputs(1), not(rst), 0, clk, outputs(1));
-    Q2 : ffd port map(inputs(2), not(rst), 0, clk, outputs(2));
+    Q0 : ffd port map(inputs(0), not(rst), '0', clk, outputs(0));
+    Q1 : ffd port map(inputs(1), not(rst), '0', clk, outputs(1));
+    Q2 : ffd port map(inputs(2), not(rst), '0', clk, outputs(2));
 
 end ckt;
 

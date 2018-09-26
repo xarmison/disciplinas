@@ -11,9 +11,9 @@ end somador;
 architecture ckt of somador is
   signal aux : std_logic_vector(2 downto 0);
 begin
-  aux(0) = a xor b;
-  aux(1) = cin and aux(0);
-  aux(2) = a and b;
+  aux(0) <= a xor b;
+  aux(1) <= cin and aux(0);
+  aux(2) <= a and b;
 
   sum  <= aux(0) xor cin;
   cout <= aux(1) or aux(2);

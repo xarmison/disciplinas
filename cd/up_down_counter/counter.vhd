@@ -4,7 +4,7 @@ use IEEE.std_logic_1164.all;
 entity counter is
     port (
         s, en, rst, clk : in std_logic;
-        saida : out std_logic_vector(2 downto 0)          
+        saida_c : out std_logic_vector(2 downto 0)          
     );
 end counter;
 
@@ -14,7 +14,7 @@ architecture ckt of counter is
         port (
             mais_um  : in std_logic_vector(2 downto 0);
             menos_um : in std_logic_vector(2 downto 0);
-            s		 : in std_logic;
+            s		 	: in std_logic;
             saida    : out std_logic_vector(2 downto 0)
         );
     end component;
@@ -22,7 +22,6 @@ architecture ckt of counter is
     component somador_3b is
         port (
             a, b : in std_logic_vector(2 downto 0);
-            cin  : in '0';
             sum  : out std_logic_vector(2 downto 0)
         );
     end component;
@@ -34,16 +33,20 @@ architecture ckt of counter is
             outputs  : out std_logic_vector(2 downto 0)
         );
     end component;
+    
         
-    signal mux_out, sumIn : std_logic_vector(2 downto 0);
-    signal regIn <= "000";
+    signal mux_out, sumIn, sumOut : std_logic_vector(2 downto 0);
+    signal num : std_logic_vector(6 downto 0);
+	 signal regClk : std_logic;
 
 begin
-    
-    REG : reg3 port map(regIn, rst, clk, sumIn);
-    S   : mux port map("001", "111", s, mux_out);
-    SUM : somador_3b port map(mux_out, sumIn, saida);
-    
-    regIn <=saida;
+	 
+	 regClk <= en and clk;
+	 
+    REG : reg3 port map(sumOut, rst, regClk, sumIn);
+    SEL : mux port map("001", "111", s, mux_out);
+    SUM : somador_3b port map(mux_out, sumIn, sumOut);
+	 
+	 saida_c <= sumOut;
 
 end ckt;

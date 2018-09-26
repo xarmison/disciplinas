@@ -14,19 +14,16 @@ architecture ckt of ffd is
 
 begin
 
-  if(C = '1') then estado <= '0';
-  elsif(P = '1') then estado <= '1';
-  end if;
-  
-  process(D, clk)
+  process(D, clk, C)
   begin
-    if(clk = '1' and clk'event) then
-      if(D = '0') then estado <= '0';
-      else then estado <= '1';
-      end if;
-    end if;
+	 if(C = '1') then estado <= '0';
+	 elsif(clk = '1' and clk'event) then
+		if(D = '0') then estado <= '0';
+		else estado <= '1';
+		end if;
+	 end if;
   end process;
-
+  
   Q <= estado;
 
 end ckt;
