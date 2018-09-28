@@ -36,17 +36,6 @@ void Polygon::translatePolygon(float a, float b) {
 }
 
 void Polygon::rotate(Point o, float angle) {
-    /*
-        Iplementa as tranformações 2D necessarias para deslocar
-        a origem do sistema de coordenadas para o ponto fornecido
-        e rotacionar os outros pontos torno da nova origem
-
-        [x', y']' = R[[x - o.x], [y - o.y]] + [o.x, 0.y]
-
-        p.x = o.x + (p.x - o.x)*cos(angle) + (p.y - o.y)*sin(angle)
-        p.y = o.y + (p.y - o.y)*cos(angle) - (p.x - o.x)*sin(angle))
-    */
-
     for(Point &p : vertices) {
         p.setX(o.getX() + (p.getX() - o.getX())*cos(-angle * (PI/180.0)) + (p.getY() - o.getY())*sin(-angle * (PI/180.0)));
         p.setY(o.getY() + (p.getY() - o.getY())*cos(-angle * (PI/180.0)) - (p.getX() - o.getX())*sin(-angle * (PI/180.0)));
