@@ -10,7 +10,7 @@ end counter;
 
 architecture ckt of counter is
 
-    component mux is 
+    component mux2x1_3b is 
         port (
             mais_um  : in std_logic_vector(2 downto 0);
             menos_um : in std_logic_vector(2 downto 0);
@@ -44,9 +44,9 @@ begin
 	 regClk <= en and clk;
 	 
     REG : reg3 port map(sumOut, rst, regClk, sumIn);
-    SEL : mux port map("001", "111", s, mux_out);
+    SEL : mux2x1_3b port map("001", "111", s, mux_out);
     SUM : somador_3b port map(mux_out, sumIn, sumOut);
 	 
-	 saida_c <= sumOut;
+	 saida_c <= sumIn;
 
 end ckt;

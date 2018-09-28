@@ -4,6 +4,7 @@ use IEEE.std_logic_1164.all;
 entity up_down_counter is
     port (
         s, en, rst, clk : in std_logic;
+		  number : out std_logic_vector(2 downto 0);
         saida_final : out std_logic_vector(6 downto 0)
     );
 end up_down_counter;
@@ -29,7 +30,9 @@ architecture ckt of up_down_counter is
 begin
 
     COUNT : counter port map(s, en, rst, clk, counter_out);
+	 number <= counter_out;
     DISP  : display_7seg port map(counter_out, saida_final);
+	 
 end ckt;
 
 
