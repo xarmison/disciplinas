@@ -1,30 +1,26 @@
-import time
+from timeit import default_timer as timer
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix, classification_report
 
 class NeuralNetwork(object):
     """Fully-connected Multi-Layer Perceptron (MLP)"""
-    def __init__(self, inputSize, hiddenSize, outputSize, epochs = 100, debug = False):
+    def __init__(self, inputSize, hiddenSize, outputSize, learning_rate = 0.01, bias = 1, epochs = 100, debug = False):
         """Metodo construtor. Define as caracteristicas da MLP"""
         self.inputSize  = inputSize
         self.hiddenSize = hiddenSize
         self.outputSize = outputSize
+        self.lr         = learning_rate
+        self.bias       = bias
         self.epochs     = epochs
         self.debug      = debug
 
         #weights
-        self.W1 = np.random.randn(self.inputSize, self.hiddenSize) 
-        self.W2 = np.random.randn(self.hiddenSize, self.outputSize)
-
-    def forward(self, X):
-        """Propaga as entradas pela rede"""
-        # Propaga a entrada pela rede
-        self.z = np.dot(X, self.W1) # Produto escalar da entrada com a primeira matrix de pesos
-        self.z2 = self.sigmoid(self.z) # Função de ativação
-        self.z3 = np.dot(self.z2, self.W2) # Produto escalar da hidden layer com a segunda matrix de pesos
-        return self.sigmoid(self.z3) # Função de ativação na saída 
-
+        np.random.seed(1)
+        self.w1 = np.random.random((self.inputSize + 1, self.hiddenSize)) 
+        self.w2 = np.random.random((self.hiddenSize, self.outputSize)) 
+               
     def sigmoid(self, x):
         """Implementa a Sigmoid como função de ativação"""
         # Função de ativação
@@ -33,49 +29,61 @@ class NeuralNetwork(object):
     def sigmoidPrime(self, x):
         """Implementa a derivada da Sigmoid"""
         # Derivada da sigmoid 
+        #return np.exp(-x)/(1 + np.exp(-x))**2
         return x * (1 - x)
 
-    def backward(self, X, y, o):
-        """Implementa o algoritmo de backpropagation"""
+    def predict(self, inp):
+        net1 = self.sigmoid( np.dot(inp, self.w1) )
+        net2 = self.sigmoid( np.dot(net1,self.w2) )
 
-        self.o_error = y - o # Erro na saída
-        self.o_delta = self.o_error * self.sigmoidPrime(o) # Aplica a derivada da função de ativação na saida e multipla pelo erro
-    
-        self.z2_error = self.o_delta.dot(self.W2.T) # z2_error: o quão os pesos da hidden layer contribuem para o erro na saída                                           
-        self.z2_delta = self.z2_error * self.sigmoidPrime(self.z2) # Aplica a derivada da sigmoid a z2_error
-                                                                
-        self.W1 += X.T.dot(self.z2_delta) # Ajusta a primeira matriz de pesos (input --> hidden) 
-        self.W2 += self.z2.T.dot(self.o_delta) # Ajusta a segunda matriz de pesos(hidden --> output) 
+        return net2
 
-    def train(self, X, y):
-        """Treina a MLP usando Backpropagation"""
-        print("Tranning ...")
-        start = time.clock()
+    def train(self, inputs, outputs):
+        # Adiciona o bias no vetor de entrada
+        inputs = np.hstack((inputs, np.ones((inputs.shape[0], self.bias))))
+
+        start = timer()
         for i in range(1, self.epochs + 1): 
+
+            l0 = inputs
+            l1 = self.sigmoid(np.dot(l0, self.w1))
+            l2 = self.sigmoid(np.dot(l1, self.w2))
+
+            l2_err   = outputs - l2
+            l2_delta = self.lr * np.multiply(l2_err, self.sigmoidPrime(l2))
+
+            l1_err   = np.dot(l2_delta, self.w2.T)
+            l1_delta = self.lr * np.multiply(l1_err, self.sigmoidPrime(l1))
+
+            self.w2 += np.dot(l1.T, l2_delta)
+            self.w1 += np.dot(l0.T, l1_delta)
+
             if self.debug:
-                print("\nEpoch: %d" % i)
-                print("Loss: %f" % np.mean(np.square(y - self.forward(X)))) # Média quadratia do erro
-           
-            o = self.forward(X)
-            self.backward(X, y, o)
-        end = time.clock()
-
+                print("\nEpoch: {}".format(i))
+                print("Error: {}".format(np.mean(np.square(l2_err))))      
+        end = timer()
         print("Traning took {:.2f}s".format(end-start))
-
-    def predict(self, input):
-        """Realiza uma classificação"""
-        return self.forward(input)
-    
+        
     def getWeights(self):
         """Retorna os vetores de peso"""
-        return self.W1, self.W2
+        print("\n___Weights___")
+
+        print("(input -> hidden):\n[")
+        for i in self.w1:
+            print("  {:15}".format(np.array_str(i)))
+        print("]\n")
+
+        print("(hidden -> output):\n[")
+        for i in self.w2:
+            print("  {:15}".format(np.array_str(i)))
+        print("]\n")
 
 def importXorDataset():
     # Importa o dataset XOR
-    dataset = pd.read_csv("/home/richard/repos/disciplinas/tai/data/xor.csv", header=None)
+    dataset = pd.read_csv("../data/xor.csv", header=None)
 
     # Extrai todos os rotulos
-    labels = dataset.iloc[:, 2].values.astype(float).reshape(30, 1)
+    labels = dataset.iloc[:, 2].values.astype(float).reshape(2000, 1)
 
     # Extrai todos as entradas
     inputs = dataset.iloc[:, [0, 1]].values.astype(float)
@@ -115,21 +123,41 @@ def importIrisDataset():
 
     return train_data, test_data, train_labels, test_labels
    
+def plotData(x, y, x1):
+    import matplotlib.pyplot as plt
+
+    plt.title("Data")
+    plt.scatter(x[:, 0], x[:, 1], c=y.reshape(1800,))
+    plt.scatter(x1[:, 0], x1[:, 1], c='green')
+    plt.grid(True, which='both')
+    plt.tight_layout()
+    plt.show()
+
 if __name__ == "__main__":
 
     print("_____ Multi-Layer Perceptron _____")
     
+    print("Importing data ...")
     train_data, test_data, train_labels, test_labels = importXorDataset()
 
     print("Building the network ...")
-    model = NeuralNetwork(2, 4, 1, 5000, debug=False)
+    model = NeuralNetwork(2, 5, 1, learning_rate=0.01, epochs=10000, debug=False)
 
+    print("Traning ...")
     model.train(train_data, train_labels)
 
-    print("MLP preditions:")
-    for i, item in enumerate(test_data):
-        print("Prediction for {:12} is {:12}, expected {}".format(
-                np.array_str(item), np.array_str(model.predict(item)), test_labels[i] 
+    if(model.debug) :
+        model.getWeights()
+        
+        print("MLP preditions:")
+        for i, item in enumerate(test_data):
+            print("Prediction for {:15} is {:3}, expected {}".format(
+                    np.array_str(item), np.array_str(np.round(model.predict(np.append(item, 1)))), test_labels[i] 
+                )
             )
-        )
- 
+    
+    pred = np.round(model.predict(np.hstack((test_data, np.ones((test_data.shape[0], 1))))))
+    print("\nReport: \n{}".format(classification_report(test_labels, pred)))
+    print("Confusion Matrix: \n{}\n".format(confusion_matrix(test_labels, pred)))
+    
+    plotData(train_data, train_labels, test_data)    
