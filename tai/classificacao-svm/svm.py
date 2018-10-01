@@ -53,7 +53,7 @@ def svmInit(C=12.5, gamma=0.50625):
     model.setType(cv2.ml.SVM_C_SVC)
     
     model.setGamma(gamma)
-    model.setC(1)
+    model.setC(10)
     model.setDegree(0.6)
     
   
@@ -124,7 +124,8 @@ if __name__ == '__main__':
 
 
     print('Deskewing images ... ')
-    digits_deskewed = list(map(deskew, digits))
+    #digits_deskewed = list(map(deskew, digits))
+    digits_deskewed = digits
 
     print('Defining HoG parameters ...')
     # HoG feature descriptor
