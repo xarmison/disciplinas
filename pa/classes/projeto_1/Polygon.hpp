@@ -4,7 +4,7 @@
 #include "Point.hpp"
 #include <vector>
 
-class Polygon : public Point {
+class Polygon {
     private:
         std::vector<Point> vertices;
     
