@@ -532,6 +532,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_6_1_exercícios">6.1 Exercícios</a></li>
 </ul>
 </li>
+<li><a href="#_7_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</a>
+<ul class="sectlevel2">
+<li><a href="#_7_2_exercícios">7.2 Exercícios</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1179,10 +1184,54 @@ $ ./tiltshift &lt;caminho_para_imagem&gt;</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_7_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Programa de <a href="https://agostinhobritojr.github.io/tutorial/pdi/#_filtragem_no_dom%C3%ADnio_da_frequ%C3%AAncia">exemplo</a></p>
+</div>
+<div class="sect2">
+<h3 id="_7_2_exercícios">7.2 Exercícios</h3>
+<div class="paragraph">
+<p>A imagem propõe a criação de um programa que auxilie no melhoramento de imagens com iluminação irregular utilizando o
+filtro homomórfico, para tal foi criada uma interface com <em>sliders</em> para ajustar os paramentros do filtro e são mostradas
+em janelas diferentes a imagem com a aplicação do filtro, a imagem original e o filtro que está sendo aplicado.</p>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa <a href="../filtragem_frequencia/homomorfico.cpp">homomorfico.cpp</a>, salve-o juntamente com o arquivo
+<a href="../Makefile">Makefile</a> em um diretório e execute a seguinte sequência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ make homomorfico
+$ ./homomorfico &lt;caminho_para_imagem&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../imgs/interface_homorfico.png" alt="Interface" width="1200" height="330">
+</div>
+<div class="title">Figure 14. Interface</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="../imgs/shining_gray.jpg" alt="Entrada do programa" width="256" height="256">
+</div>
+<div class="title">Figure 15. Entrada do programa</div>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="../imgs/shining_filtered.jpg" alt="Saída do programa" width="256" height="256">
+</div>
+<div class="title">Figure 16. Saída do programa</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-22 19:01:11 -03
+Last updated 2018-10-03 16:19:32 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
