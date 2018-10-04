@@ -74,7 +74,7 @@ void testRectangle() {
     rect.print();
     cout << "Area do retangulo: " << rect.area() << endl;
 
-    cout << "\nRotacionar o poligono 180 graus em torno de (-1, 5.5) \n";
+    cout << "\nRotacionar o poligono 30 graus em torno de (-1, 5.5) \n";
     rect.rotate(Point(-1, 5.5), 30);
     rect.print();
     cout << "Area do retangulo: " << rect.area() << endl;

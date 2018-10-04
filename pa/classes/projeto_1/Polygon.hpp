@@ -46,6 +46,7 @@ class Polygon {
          * [x', y']' = R[[x - o.x], [y - o.y]] + [o.x, 0.y]
          * 
          * p.x = o.x + (p.x - o.x)*cos(angle) + (p.y - o.y)*sin(angle)
+         * 
          * p.y = o.y + (p.y - o.y)*cos(angle) - (p.x - o.x)*sin(angle))
          * 
          * @param o ponto em torno do qual o polígono será rotacionado
