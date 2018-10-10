@@ -534,7 +534,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_7_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</a>
 <ul class="sectlevel2">
-<li><a href="#_7_2_exercícios">7.2 Exercícios</a></li>
+<li><a href="#_7_1_exercícios">7.1 Exercícios</a></li>
+</ul>
+</li>
+<li><a href="#_8_detecção_de_bordas_com_o_algoritmo_de_canny">8 Detecção de bordas com o algoritmo de Canny</a>
+<ul class="sectlevel2">
+<li><a href="#_8_1_canny_e_a_arte_com_pontilhismo">8.1 Canny e a arte com pontilhismo</a></li>
+<li><a href="#_8_2_exercícios">8.2 Exercícios</a></li>
+</ul>
+</li>
+<li><a href="#_9_quantização_vetorial_com_k_means">9 Quantização vetorial com k-means</a>
+<ul class="sectlevel2">
+<li><a href="#_9_1_exercícios">9.1 Exercícios</a></li>
 </ul>
 </li>
 </ul>
@@ -1148,7 +1159,7 @@ $ ./filtroespacial</code></pre>
 <p><strong>Exercício 1</strong></p>
 </div>
 <div class="paragraph">
-<p>A ativadade propões a criação de uma interface que proporcione ao usuário aplicar o efeito Tilf shift em imgaens,
+<p>A ativadade propõe a criação de uma interface que proporcione ao usuário aplicar o efeito Tilf shift em imgaens,
 para tal criada duas imagens a partir da imagem de entrada, uma usada apenas para a multiplicação ponderada e
 outra usada para armazenar o borramento da imagem de entrada. Ao final é feita a a multiplicação ponderada dos
 pixels seguindo o controle de desfoque feito manualmente a partir de sliders presentes na interface.</p>
@@ -1191,9 +1202,9 @@ $ ./tiltshift &lt;caminho_para_imagem&gt;</code></pre>
 <p>Programa de <a href="https://agostinhobritojr.github.io/tutorial/pdi/#_filtragem_no_dom%C3%ADnio_da_frequ%C3%AAncia">exemplo</a></p>
 </div>
 <div class="sect2">
-<h3 id="_7_2_exercícios">7.2 Exercícios</h3>
+<h3 id="_7_1_exercícios">7.1 Exercícios</h3>
 <div class="paragraph">
-<p>A imagem propõe a criação de um programa que auxilie no melhoramento de imagens com iluminação irregular utilizando o
+<p>O exercíco propõe a criação de um programa que auxilie no melhoramento de imagens com iluminação irregular utilizando o
 filtro homomórfico, para tal foi criada uma interface com <em>sliders</em> para ajustar os paramentros do filtro e são mostradas
 em janelas diferentes a imagem com a aplicação do filtro, a imagem original e o filtro que está sendo aplicado.</p>
 </div>
@@ -1228,10 +1239,148 @@ $ ./homomorfico &lt;caminho_para_imagem&gt;</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_8_detecção_de_bordas_com_o_algoritmo_de_canny">8 Detecção de bordas com o algoritmo de Canny</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Programa de <a href="https://agostinhobritojr.github.io/tutorial/pdi/#_canny_e_a_arte_com_pontilhismo">exemplo</a></p>
+</div>
+<div class="sect2">
+<h3 id="_8_1_canny_e_a_arte_com_pontilhismo">8.1 Canny e a arte com pontilhismo</h3>
+<div class="paragraph">
+<p>Programa de <a href="https://agostinhobritojr.github.io/tutorial/pdi/#_canny_e_a_arte_com_pontilhismo">exemplo</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_8_2_exercícios">8.2 Exercícios</h3>
+<div class="paragraph">
+<p>O exercício solicita a implementação de um programa para usar as bordas produzidas pelo algoritmo de Canny para
+melhorar a qualidade da imagem pontilhista gerada, para tal utiliza-se a posição dos pixels de borda encontrados pelo
+algoritmo de Canny para desenhar pontos nos respectivos locais na imagem gerada através da seguinte função:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-kt">void</span> <span class="tok-nf">getPointillisticImage</span><span class="tok-p">()</span> <span class="tok-p">{</span>
+    <span class="tok-c1">// Cria variaveis para as dimensoes da imagem</span>
+    <span class="tok-kt">int</span> <span class="tok-n">height</span> <span class="tok-o">=</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">height</span><span class="tok-p">,</span> <span class="tok-n">width</span> <span class="tok-o">=</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">width</span><span class="tok-p">;</span>
+
+    <span class="tok-c1">// Cria as matrizes para as bordas da imagem e para a imagem de pontos</span>
+    <span class="tok-n">points</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-n">height</span><span class="tok-p">,</span> <span class="tok-n">width</span><span class="tok-p">,</span> <span class="tok-n">CV_8UC3</span><span class="tok-p">,</span> <span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">255</span><span class="tok-p">,</span> <span class="tok-mi">255</span><span class="tok-p">,</span> <span class="tok-mi">255</span><span class="tok-p">));</span>
+
+    <span class="tok-n">Canny</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">edges</span><span class="tok-p">,</span> <span class="tok-n">canny_slider</span><span class="tok-p">,</span> <span class="tok-mi">3</span> <span class="tok-o">*</span> <span class="tok-n">canny_slider</span><span class="tok-p">);</span>
+
+    <span class="tok-c1">// Percorre a matriz com as bordas e preenche um vetor com as coordenadas</span>
+    <span class="tok-c1">// dos pixels de valor 255</span>
+    <span class="tok-n">vector</span><span class="tok-o">&lt;</span><span class="tok-n">vector</span><span class="tok-o">&lt;</span><span class="tok-kt">int</span><span class="tok-o">&gt;&gt;</span> <span class="tok-n">edgesCoordinates</span><span class="tok-p">;</span>
+
+    <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span> <span class="tok-o">=</span> <span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span> <span class="tok-o">&lt;</span> <span class="tok-n">height</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+        <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">j</span> <span class="tok-o">=</span> <span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">j</span> <span class="tok-o">&lt;</span> <span class="tok-n">width</span><span class="tok-p">;</span> <span class="tok-n">j</span><span class="tok-o">++</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+            <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">edges</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">j</span><span class="tok-p">)</span> <span class="tok-o">==</span> <span class="tok-mi">255</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+                <span class="tok-n">edgesCoordinates</span><span class="tok-p">.</span><span class="tok-n">push_back</span><span class="tok-p">({</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">j</span><span class="tok-p">});</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+
+    <span class="tok-c1">// Embaralha as coordenas onde os circulos serão desenhados</span>
+    <span class="tok-c1">// para aumentar a autenticidade do resultado</span>
+    <span class="tok-n">random_shuffle</span><span class="tok-p">(</span><span class="tok-n">edgesCoordinates</span><span class="tok-p">.</span><span class="tok-n">begin</span><span class="tok-p">(),</span> <span class="tok-n">edgesCoordinates</span><span class="tok-p">.</span><span class="tok-n">end</span><span class="tok-p">());</span>
+
+    <span class="tok-c1">// Percorre as coordenadas e desenha em uma nova matrix os pontos</span>
+    <span class="tok-c1">// com cor igual a cor da imagem na posição correspodente</span>
+    <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-k">auto</span> <span class="tok-nl">coordinate</span> <span class="tok-p">:</span> <span class="tok-n">edgesCoordinates</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+        <span class="tok-n">Vec3b</span> <span class="tok-n">color</span> <span class="tok-o">=</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">Vec3b</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">coordinate</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">],</span> <span class="tok-n">coordinate</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">]);</span>
+
+        <span class="tok-n">circle</span><span class="tok-p">(</span><span class="tok-n">points</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">coordinate</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">],</span> <span class="tok-n">coordinate</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">]),</span> <span class="tok-n">RAIO</span><span class="tok-p">,</span> <span class="tok-n">color</span><span class="tok-p">,</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">CV_AA</span><span class="tok-p">);</span>
+    <span class="tok-p">}</span>
+
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função mostrada acima tem o objetivo de sempre que o treshold do Canny for alterado na interface
+uma nova imagem pontilhista seja gerada, calculando as bordas com o algoritmo Canny em seguida
+procurando os pixels de borda e salvando suas posições em um vetor então emlhara-se esse vetor
+para melhorar a autenticidade do efeito, por fim o vetor de coordenadas é percorrido e são desenhados
+circulos em cada uma das posições preenchidos com as cores do pixel correspondente na imagem original.</p>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa <a href="../bordas/cannyPoints.cpp">cannyPoints.cpp</a>, salve-o juntamente com o arquivo
+<a href="../Makefile">Makefile</a> em um diretório e execute a seguinte sequência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ make cannyPoints
+$ ./cannyPoints &lt;caminho_para_imagem&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../imgs/interface_canny.png" alt="Interface" width="256" height="256">
+</div>
+<div class="title">Figure 17. Interface</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="../imgs/sunflowers.jpg" alt="Entrada do programa" width="256" height="256">
+</div>
+<div class="title">Figure 18. Entrada do programa</div>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="../imgs/sunflowers_points.jpg" alt="Saída do programa" width="256" height="256">
+</div>
+<div class="title">Figure 19. Saída do programa</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_quantização_vetorial_com_k_means">9 Quantização vetorial com k-means</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Programa de <a href="https://agostinhobritojr.github.io/tutorial/pdi/#_quantiza%C3%A7%C3%A3o_vetorial_com_k_means">exemplo</a></p>
+</div>
+<div class="sect2">
+<h3 id="_9_1_exercícios">9.1 Exercícios</h3>
+<div class="paragraph">
+<p>A atividade solicita a modificação do exemplo fornecido para que a inicialização dos centróides seja feita
+utilizando o parâmetro KMEANS_RANDOM_CENTERS. Para tal a função kmeans utilizada está descrita na listagem
+a seguir.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">kmeans</span><span class="tok-p">(</span>
+    <span class="tok-n">samples</span><span class="tok-p">,</span>
+    <span class="tok-n">nClusters</span><span class="tok-p">,</span>
+    <span class="tok-n">rotulos</span><span class="tok-p">,</span>
+    <span class="tok-n">TermCriteria</span><span class="tok-p">(</span><span class="tok-n">CV_TERMCRIT_ITER</span> <span class="tok-o">|</span> <span class="tok-n">CV_TERMCRIT_EPS</span><span class="tok-p">,</span> <span class="tok-mi">100</span><span class="tok-p">,</span> <span class="tok-mf">0.01</span><span class="tok-p">),</span>
+    <span class="tok-n">nRodadas</span><span class="tok-p">,</span>
+    <span class="tok-n">KMEANS_RANDOM_CENTERS</span><span class="tok-p">,</span>
+    <span class="tok-n">centros</span>
+<span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa <a href="../segmentacao/kmeans_random_centers.cpp">kmeans_random_centers.cpp</a> 10 vezes, salve-o
+juntamente com o arquivo <a href="../Makefile">Makefile</a> em um diretório e execute a seguinte sequência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ make kmeans_random_centers
+$ <span class="tok-k">for</span> i in <span class="tok-sb">`</span>seq <span class="tok-m">1</span> <span class="tok-m">10</span><span class="tok-sb">`</span><span class="tok-p">;</span><span class="tok-k">do</span> ./kmeans_random_centers.out &lt;caminho_para_imagem&gt; &lt;numero_de_clusters&gt;<span class="tok-p">;</span> <span class="tok-k">done</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As imagens podem diferir devido ao ponto inicial que cada centróide pode assumir e a não existência de mais rodadas
+para definir a melhor iteração da aplicação do algoritmo.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-03 16:19:32 -03
+Last updated 2018-10-10 17:00:23 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
