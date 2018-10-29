@@ -48,7 +48,7 @@ class Matrix {
         **/
         void zeros();
 
-        /**
+        /** 
          * @brief Sobrecarga do operador () para 
          * alterações pontuaisna matriz
          * @param i é a linha a ser alterada

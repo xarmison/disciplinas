@@ -8,7 +8,8 @@ int main() {
 
     a.ones();
 
-    a(0, 0) = 42;
+    a(0, 0) = 42; 
+    
 
     cout << "Matrix A: ";
     a.print();

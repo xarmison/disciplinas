@@ -8,7 +8,7 @@ using namespace std;
 
 Matrix::Matrix(int _rows, int _cols): rows(_rows), cols(_cols) {
     if(rows > 0 && cols > 0) {
-        x = new float*[rows];
+        x = new float*[rows]; 
         
         if(x == NULL) {
             delete[] x;
