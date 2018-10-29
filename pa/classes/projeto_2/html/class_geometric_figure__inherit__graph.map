@@ -1,0 +1,5 @@
+<map id="GeometricFigure" name="GeometricFigure">
+<area shape="rect" id="node2" href="$class_circle.html" title="Circle" alt="" coords="5,80,61,107"/>
+<area shape="rect" id="node3" href="$class_line.html" title="Line" alt="" coords="86,80,133,107"/>
+<area shape="rect" id="node4" href="$class_rectangle.html" title="Rectangle" alt="" coords="157,80,238,107"/>
+</map>

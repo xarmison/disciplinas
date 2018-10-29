@@ -1,0 +1,7 @@
+dim 20 80
+rectangle 0 0 79 19 0 *
+line 10 0 0 40 *
+line 0 40 10 79 *
+line 10 79 19 40 *
+line 19 40 10 0 *
+circle 10 40 9 0 *
