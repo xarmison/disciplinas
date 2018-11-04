@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
+use IEEE.std_logic_unsigned.all;
 
 entity trafficB is
   port (
@@ -13,19 +14,19 @@ architecture ckt of trafficB is
   type state_type is (s0, s1, s2, s3, s4, s5);
   
   signal state : state_type;
-  signal count : std_logic_vector(5 downto 0);
+  signal count : std_logic_vector(4 downto 0);
 
-  constant SEC30 : std_logic_vector(5 downto 0) := "11110";
-  constant SEC10 : std_logic_vector(5 downto 0) := "01010";
-  constant SEC3  : std_logic_vector(5 downto 0) := "00011";
-  constant SEC1  : std_logic_vector(5 downto 0) := "00001";
+  constant SEC30 : std_logic_vector(4 downto 0) := "11110";
+  constant SEC10 : std_logic_vector(4 downto 0) := "01010";
+  constant SEC3  : std_logic_vector(4 downto 0) := "00011";
+  constant SEC1  : std_logic_vector(4 downto 0) := "00001";
 
 begin
 
   process(clk, clr) begin
     if clr = '1' then 
       state <= s0;
-      count <= X"0";
+      count <= "00000";
 
     elsif clk = '1' and clk'event then
       case state is 
@@ -35,7 +36,7 @@ begin
             count <= count + 1;
           else
             state <= s1;
-            count <= X"0";
+            count <= "00000";
           end if;
 
         when s1 => 
@@ -44,7 +45,7 @@ begin
             count <= count + 1;
           else 
             state <= s2;
-            count <= X"0";
+            count <= "00000";
           end if;
 
         when s2 => 
@@ -53,7 +54,7 @@ begin
               count <= count + 1;
             else 
               state <= s3;
-              count <= X"0";
+              count <= "00000";
             end if;
         
         when s3 => 
@@ -62,7 +63,7 @@ begin
             count <= count + 1;
           else
             state <= s4;
-            count <= X"0";
+            count <= "00000";
           end if;
         
         when s4 => 
@@ -71,7 +72,7 @@ begin
             count <= count + 1;
           else 
             state <= s5;
-            count <= X"0";
+            count <= "00000";
           end if;
       
         when s5 => 
@@ -80,7 +81,7 @@ begin
             count <= count + 1;
           else 
             state <= s0;
-            count <= X"0";
+            count <= "00000";
           end if;
         
         when others =>
