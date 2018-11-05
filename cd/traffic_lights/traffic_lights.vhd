@@ -7,7 +7,6 @@ entity traffic_lights is
   port(
     clk_fpga, clr	: in std_logic;
 	 sel				: in std_logic_vector(1 downto 0);
-	 clk				: out std_logic;
     lights			: out std_logic_vector(5 downto 0) 
   );
 end traffic_lights;
@@ -50,7 +49,6 @@ architecture ckt of traffic_lights is
 begin
 	
 	CLOK1HZ : clock_converter port map(clk_fpga, clk_1);
-	clk <= clk_1;
 	
 	process(sel) begin
 		if(sel = "00") then
