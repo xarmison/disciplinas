@@ -1,6 +1,6 @@
 # Perceptron
 
-Modelo do Perceptron implementado para classificação do dataset Iris 
+Modelo do Perceptron implementado para classificação do dataset Iris.
 
 ## Exemplo de saída
 
