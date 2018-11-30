@@ -24,4 +24,5 @@ HEADERS  += mainwindow.h \
     mythread.h \
     datastorage.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    mainWindow.ui

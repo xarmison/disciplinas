@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>MainWindow</class>
+    <widget class="QMainWindow" name="MainWindow">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>527</width>
+                <height>402</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Server</string>
+        </property>
+        <widget class="QWidget" name="centralWidget">
+            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="40,60">
+                <item>
+                    <widget class="QGroupBox" name="groupBox">
+                        <property name="title">
+                            <string>IPs do servidor</string>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout">
+                            <item>
+                                <widget class="QListWidget" name="listWidget"/>
+                            </item>
+                        </layout>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="QGroupBox" name="groupBox_2">
+                        <property name="title">
+                            <string>Mensagens</string>
+                        </property>
+                        <layout class="QGridLayout" name="gridLayout">
+                            <item row="0" column="0">
+                                <widget class="QTextBrowser" name="textBrowser"/>
+                            </item>
+                        </layout>
+                    </widget>
+                </item>
+            </layout>
+        </widget>
+    </widget>
+    <layoutdefault spacing="6" margin="11"/>
+    <resources/>
+    <connections/>
+</ui>
