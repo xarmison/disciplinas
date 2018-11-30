@@ -6,7 +6,7 @@ using namespace cv;
 
 int main( int argc, char** argv ) {
     if(argc != 2) {
-        cout << "Argumentos faltando!\nUso: ./kmeans <caminho_para_imagem>\n";
+        cout << "Argumentos faltando!\nUso: ./otsu <caminho_para_imagem>\n";
         exit(0);
     }
 
