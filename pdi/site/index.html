@@ -548,6 +548,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_9_1_exercícios">9.1 Exercícios</a></li>
 </ul>
 </li>
+<li><a href="#_trabalho_final">Trabalho Final</a></li>
 </ul>
 </div>
 </div>
@@ -1377,10 +1378,69 @@ para definir a melhor iteração da aplicação do algoritmo.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_trabalho_final">Trabalho Final</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>O trabalho final da disciplina intitulado "Classificação da orientação da cabeça de camundongos" teve como
+objetivo criar uma ferramenta para auxilio na execução de experimentos de neurociência comportamental
+que requerem a localização precisa de um animal em um dado ambiente e a direção de seu olhar.</p>
+</div>
+<div class="paragraph">
+<p>Para o desenvolvimento do algoritmo a seguinte configuração experimental foi utilizada:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../imgs/tf_confExp.png" alt="Configuração Experimental">
+</div>
+<div class="title">Figure 20. Configuração Experimental</div>
+</div>
+<div class="paragraph">
+<p>Para realizar a segmentação do animal foi subtraido do frame atual o primeiro frame com apenas o
+fundo da cena em seguida um treshold para a faixa de cor do animal após a subtração é aplicado como
+ilustrado na figura a seguir.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../imgs/tf_segmentation.png" alt="Segementação">
+</div>
+<div class="title">Figure 21. Estratégia de Segmentação</div>
+</div>
+<div class="paragraph">
+<p>Após realizar a segmentação a imagem obtida por vezes ficava descontinua em certos pontos, portanto
+para suavizar tal imagem foi aplicada uma abertura morfológica como ilustrado a seguir.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../imgs/tf_morph.png" alt="Morph">
+</div>
+<div class="title">Figure 22. Abertura Morfológica</div>
+</div>
+<div class="paragraph">
+<p>Por fim para obter a orientação da cabeça foi utilizado a Análise de Componentes Principais
+(PCA, da sigla em inglês), o resultado do processamento pode ser visto na imagem a seguir.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../imgs/tf_pca.png" alt="PCA">
+</div>
+<div class="title">Figure 23. Análise de Componentes Principais</div>
+</div>
+<div class="paragraph">
+<p>O código utilizado está disponivel em <a href="../trabalho_final/headOrientation.py">headOrientation.py</a>
+para executa-lo execute a seguinte sequência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ python headOrientation.py &lt;Video&gt; &lt;Imagem_de_fundo&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-10 17:00:23 -03
+Last updated 2018-12-09 19:13:39 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
