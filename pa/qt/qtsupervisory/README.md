@@ -149,8 +149,7 @@ recuperar os endereços das máquinas que produziram dados e traçar um
 gráfico data-hora x valor de uma sequência de dados fornecida pelo
 servidor.
 
-O usuário do módulo consumidor de dados, o usuário deverá ter à sua
-disposição as seguintes funcionalidades:
+O usuário deverá tem à sua disposição as seguintes funcionalidades:
 
 - Indicar o endereço IP do servidor de dados ao qual o cliente deverá
   se conectar.
@@ -176,8 +175,7 @@ traçado podem ser consideradas:
   últimas 30 amostras obtidas). Isso pode interessante para evitar que
   o gráfico fique sobrecarregado.
 
-Um exemplo de interface para o módulo consumidor de dados é mostrado na
-figura que segue:
+O módulo consumidor de dados é mostrado na figura que segue:
 
 ![Produtor de dados](images/dataconsumer.png)
 

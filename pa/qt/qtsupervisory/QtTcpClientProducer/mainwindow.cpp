@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     timing = 1;
 
     // IP used during development
-    ui->server->setText(QString("10.6.4.109:1234"));
+    ui->server->setText(QString("10.51.161.40:1234"));
     
     // Buttons
     connect(
@@ -80,8 +80,7 @@ void MainWindow::tcpConnect(QString serverIP, int serverPort) {
     } else {
         QString str = "<i><font color=\"red\">Connection Refused</font></i>";
         ui->logScreen->append(str);
-    }
-    
+    }  
 }
 
 void MainWindow::tcpDisconnect() {
@@ -129,7 +128,7 @@ void MainWindow::setRandonNumber() {
     socket->write(str.toStdString().c_str());
         
     if(socket->waitForBytesWritten(3000)) {
-        qDebug() << "Data Written";
+        //qDebug() << "Data Written";
     } else {
         //qDebug() << "Error Writing Data";
         QString str = "<i><font color=\"red\">Error Writing Data</font></i>";
