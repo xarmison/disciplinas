@@ -29,5 +29,6 @@ int main(int argc, char **argv) {
     }
     cout << endl;
 
+    delete seq;
     return 0;
 }
