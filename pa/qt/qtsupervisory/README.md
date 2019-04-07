@@ -2,9 +2,6 @@
 
 ## Apresentação 
 
-O presente projeto visa desenvolver o aluno na prática de programação
-orientada a objetos usando a biblioteca Qt.
-
 O projeto consiste em três programas de computador que trabalham em
 conjunto para simular um sistema simples de aquisição e supervisão de
 dados usando comunicação TCP/IP em uma rede local.
