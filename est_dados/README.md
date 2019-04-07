@@ -11,4 +11,4 @@
 
 * [Algoritmos de ordenação simples](./lista_3/1_sorting.cpp)
 * [Algoritmos de ordenação com funções de comparação diferentes](./lista_4/1_employee.cpp)
-* [Algoritmos de buca](./lista_3/2_search.cpp)
+* [Algoritmos de busca](./lista_3/2_search.cpp)
