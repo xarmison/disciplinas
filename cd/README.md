@@ -1,6 +1,6 @@
 # CD
 
-Códigos desenvolvidos na disciplina DCA0212.1 - CIRCUITOS DIGITAIS - LABORATÓRIO
+Códigos desenvolvidos na disciplina DCA0212 - CIRCUITOS DIGITAIS
 
 ## VHD de alguns componentes
 
