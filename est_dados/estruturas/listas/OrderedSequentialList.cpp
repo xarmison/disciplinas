@@ -116,4 +116,6 @@ ostream& operator << (ostream &os, OrderedSequentialList &list) {
             os << ", ";
     }
     os << "\n";
+
+    return os;
 }
