@@ -1,10 +1,10 @@
 #include <iostream>
-#include "OrderedSequentialList.hpp"
+//#include "OrderedSequentialList.hpp"
 //#include "OrderedLinkedList.hpp"
 #include "LinkedList.hpp"
 
 using namespace std;
-
+/*
 void testOrderedSequentialList() {
     // Cria uma lista com 10 elementos
     OrderedSequentialList lista(10);
@@ -33,6 +33,7 @@ void testOrderedSequentialList() {
     else
         cout << "A chave " << key << " esta na posicao " << pos << endl;
 }
+*/
 /*
 void testOrderedLinkedList() {
     OrderedLinkedList lista;
